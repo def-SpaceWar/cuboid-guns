@@ -1,5 +1,5 @@
-import { Environment } from "../../main";
-import { PlayerEnvironment } from "../player/player";
+import { Environment } from "../../main.ts";
+import { PlayerEnvironment } from "../player/player.ts";
 
 export type GameState = {
     env: Environment;

@@ -1,19 +1,19 @@
-import { Color } from "../../render/color";
-import { Rectangle } from "../../render/rectangle";
-import { Player } from "../player/player";
-import { Platform } from "./platform";
+import { Color } from "../../render/color.ts";
+import { Rectangle } from "../../render/rectangle.ts";
+import { Player } from "../player/player.ts";
+import { Platform } from "./platform.ts";
 
 export class ColoredPlatform implements Platform {
     rect: Rectangle;
 
-    get x() { return this.rect.x };
-    set x(n) { this.rect.x = n };
-    get y() { return this.rect.y };
-    set y(n) { this.rect.y = n };
-    get w() { return this.rect.w };
-    set w(n) { this.rect.w = n };
-    get h() { return this.rect.h };
-    set h(n) { this.rect.h = n };
+    get x() { return this.rect.x }
+    set x(n) { this.rect.x = n }
+    get y() { return this.rect.y }
+    set y(n) { this.rect.y = n }
+    get w() { return this.rect.w }
+    set w(n) { this.rect.w = n }
+    get h() { return this.rect.h }
+    set h(n) { this.rect.h = n }
 
     playersTouching: Player[] = [];
 

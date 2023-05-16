@@ -1,4 +1,4 @@
-import startGame from './start_game';
+import startGame from './start_game.ts';
 import './style.css';
 
 const canvas = document.getElementById("app")!.appendChild(document.createElement("canvas")),

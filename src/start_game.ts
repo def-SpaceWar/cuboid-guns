@@ -1,8 +1,8 @@
-import { ColoredPlatform } from "./game/platform/colored_platform";
-import Default from "./game/player/default";
-import { Player } from "./game/player/player";
-import { Environment } from "./main";
-import { Color } from "./render/color";
+import { ColoredPlatform } from "./game/platform/colored_platform.ts";
+import Default from "./game/player/default.ts";
+import { Player } from "./game/player/player.ts";
+import { Environment } from "./main.ts";
+import { Color } from "./render/color.ts";
 
 const startGame = (env: Environment) => {
     const camera: [x: number, y: number] = [env.ctx.canvas.width / 2, env.ctx.canvas.height / 2],

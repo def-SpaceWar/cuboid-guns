@@ -1,4 +1,4 @@
-import { Platform } from "../platform/platform";
+import { Platform } from "../platform/platform.ts";
 
 export type PlayerEnvironment = {
     players: Player[],

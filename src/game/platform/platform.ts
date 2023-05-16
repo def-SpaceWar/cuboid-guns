@@ -1,4 +1,4 @@
-import { Player } from "../player/player";
+import { Player } from "../player/player.ts";
 
 export interface Platform {
     x: number;

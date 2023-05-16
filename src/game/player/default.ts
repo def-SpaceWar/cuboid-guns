@@ -1,6 +1,6 @@
-import { Color } from "../../render/color";
-import { Rectangle } from "../../render/rectangle";
-import { PlayerEnvironment, Player, Controls, PlayerHealth } from "./player";
+import { Color } from "../../render/color.ts";
+import { Rectangle } from "../../render/rectangle.ts";
+import { PlayerEnvironment, Player, Controls, PlayerHealth } from "./player.ts";
 
 export default class Default implements Player {
     rect: Rectangle;
