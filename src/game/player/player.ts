@@ -24,7 +24,8 @@ export interface Player {
 
     velX: number;
     velY: number;
-
+    
+    playerNum: number;
     health: PlayerHealth;
     dead: boolean;
 

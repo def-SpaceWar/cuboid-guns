@@ -12,7 +12,7 @@ export default class Default implements Player {
     doubleJump = 2;
     canJump = true;
     isPhasing = false;
-    phaseTimeout: any = 0;
+    phaseTimeout = 0;
 
     canAttack = true;
     attackCooldown = 2;
@@ -218,9 +218,9 @@ export default class Default implements Player {
 }
 
 class DefaultHealth implements PlayerHealth {
-    health: number = 100;
-    animationHealth: number = 100;
-    maxHealth: number = 100;
+    health = 100;
+    animationHealth = 100;
+    maxHealth = 100;
 
     borderRect: Rectangle;
     bgRect: Rectangle;

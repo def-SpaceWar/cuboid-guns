@@ -1,18 +1,17 @@
-import { Environment } from "../../main.ts";
-import { PlayerEnvironment } from "../player/player.ts";
+import type { Environment } from "../../main.ts";
+import type { Color } from "../../render/color.ts";
+import type { Platform } from "../platform/platform.ts";
+import type { Player } from "../player/player.ts";
 
 export type GameState = {
-    env: Environment;
-    pEnv: PlayerEnvironment;
-}
+  players: Player[];
+  platforms: Platform[];
+  env: Environment;
+};
 
-// figure out how to implement this!
-// there are many ways to go about it
-// and I need to do the right one for maintainability
 export interface Gamemode {
-    gameState: GameState;
-    gameOver(): boolean;
-    //? start(): void;
-    //? update(): void;
-    //? draw(): void;
+  gameState: GameState;
+  gameOver(): boolean;
+  winner(): [whoOrMessage: string, color: Color];
+  update(dt: number): void;
 }
