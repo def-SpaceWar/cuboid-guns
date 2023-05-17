@@ -89,6 +89,7 @@ const startGame = (env: Environment) => {
   const playerEnv = { players, platforms, keys: env.keys };
   const gamemode = new LastStanding({ players, platforms, env });
   let gameOver = false;
+  let winner: [whoOrWhat: string, color: Color];
 
   const gameLoop = (before: number) => (now: number) => {
     env.ctx.fillStyle = "#25d3ff";
@@ -104,10 +105,21 @@ const startGame = (env: Environment) => {
     const dt = (now - before) / 1000;
     gamemode.update();
     if (gamemode.gameOver() && !gameOver) {
-      pause(5).then(() => {
-        env.loop = startGame(env);
-      });
+      pause(1)
+        .then(() => {
+          winner = gamemode.winner();
+        });
+
+      pause(6)
+        .then(() => {
+          cancelAnimationFrame(env.loop);
+          env.loop = startGame(env);
+        });
       gameOver = true;
+    }
+
+    if (winner && gameOver) {
+      winner; // display winner in-game in the right color
     }
 
     platforms.forEach((p) => p.update(dt));
