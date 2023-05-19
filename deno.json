@@ -11,5 +11,8 @@
       "dom",
       "dom.iterable"
     ]
+  },
+  "imports": {
+    "./src/assets/img.png": "./src/assets/img.d.ts"
   }
 }

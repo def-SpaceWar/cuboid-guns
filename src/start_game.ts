@@ -1,13 +1,15 @@
 import { LastStanding } from "./game/gamemode/last_standing.ts";
+import { Level } from "./game/level/level.ts";
 import { ColoredPlatform } from "./game/platform/colored_platform.ts";
 import Default from "./game/player/default.ts";
 import type { Player } from "./game/player/player.ts";
 import type { Environment } from "./main.ts";
 import { Color } from "./render/color.ts";
+import type { Position } from "./render/rectangle.ts";
 import { pause } from "./util.ts";
 
-const startGame = (env: Environment) => {
-  const camera: [x: number, y: number] = [
+const startGame = async (env: Environment) => {
+  const camera: Position = [
       env.ctx.canvas.width / 2,
       env.ctx.canvas.height / 2,
     ],
@@ -91,9 +93,16 @@ const startGame = (env: Environment) => {
   let gameOver = false;
   let winner: [whoOrWhat: string, color: Color];
 
+  const level = new Level({
+    name: "hello",
+    bgUrl: "/img.png",
+    tiles: [],
+  });
+
   const gameLoop = (before: number) => (now: number) => {
     env.ctx.fillStyle = "#25d3ff";
     env.ctx.fillRect(0, 0, env.ctx.canvas.width, env.ctx.canvas.height);
+    level.draw(camera, env.ctx);
     env.ctx.save();
     centerCamera(players);
     env.ctx.translate(...camera);
@@ -105,16 +114,15 @@ const startGame = (env: Environment) => {
     const dt = (now - before) / 1000;
     gamemode.update();
     if (gamemode.gameOver() && !gameOver) {
-      pause(1)
-        .then(() => {
-          winner = gamemode.winner();
-        });
+      pause(1).then(() => {
+        winner = gamemode.winner();
+      });
 
-      pause(6)
-        .then(() => {
-          cancelAnimationFrame(env.loop);
-          env.loop = startGame(env);
-        });
+      pause(5).then(async () => {
+        cancelAnimationFrame(env.loop);
+        env.loop = await startGame(env);
+      });
+
       gameOver = true;
     }
 
@@ -135,6 +143,9 @@ const startGame = (env: Environment) => {
 
     env.loop = requestAnimationFrame(gameLoop(now));
   };
+
+  // load level
+  await level.load(env.ctx);
 
   return requestAnimationFrame(gameLoop(performance.now()));
 };

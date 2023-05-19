@@ -7,6 +7,14 @@ export class Color {
         );
     }
 
+    static blend(c1: Color, c2: Color, amount = 0.5) {
+        return new Color(
+            c1.r * amount + c2.r * (1 - amount),
+            c1.g * amount + c2.g * (1 - amount),
+            c1.b * amount + c2.b * (1 - amount)
+        );
+    }
+
     static damage = new Color(255, 50, 100);
     static regen = new Color(50, 255, 100);
 
