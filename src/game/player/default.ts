@@ -265,16 +265,18 @@ class DefaultHealth implements PlayerHealth {
         if (this.player.dead) return;
         if (amount <= 0) return;
         this.health = Math.max(this.health - amount, 0);
-        this.rect.color.pulse(Color.damage, 2);
-        this.bgRect.color.pulse(Color.damage.darken(2), 2);
+        const blendedColor = Color.blend(this.rect.color, Color.damage, 0.75);
+        this.rect.color.pulse(blendedColor, 2);
+        this.bgRect.color.pulse(blendedColor.darken(2), 2);
     }
 
     regenHealth(amount: number): void {
         if (this.player.dead) return;
         if (amount <= 0) return;
         this.health = Math.min(this.health + amount, this.maxHealth);
-        this.rect.color.pulse(Color.regen, 2);
-        this.bgRect.color.pulse(Color.regen.darken(2), 2);
+        const blendedColor = Color.blend(this.rect.color, Color.regen, 0.75);
+        this.rect.color.pulse(blendedColor, 2);
+        this.bgRect.color.pulse(blendedColor.darken(2), 2);
     }
 
     draw(ctx: CanvasRenderingContext2D): void {

@@ -32,17 +32,13 @@ export class Level {
   }
 
   draw(camera: Position, ctx: CanvasRenderingContext2D) {
-    const scale = 0.5,
-      imgScale = 5,
+    const imgScale = 20,
       width = this.bgImage.width * imgScale,
       height = this.bgImage.height * imgScale;
 
     ctx.save();
+    ctx.translate(...camera);
     ctx.translate(-width / 2, -height / 2);
-    ctx.translate(camera[0], camera[1]);
-    ctx.scale(scale, scale);
-    ctx.translate(-camera[0], -camera[1]);
-    ctx.translate(width / 2, height / 2);
     ctx.drawImage(this.bgImage, 0, 0, width, height);
     ctx.restore();
   }
